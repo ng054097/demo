@@ -2,26 +2,30 @@ package clases;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import org.springframework.data.annotation.Id;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
-public class Disponibilidad {
+public class Alquiler {
 
-@Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private Cancha cancha ;
+    @Column
     private  int dia;
     @Column
     private  int horarioEntrada;
     @Column
     private  int horarioSalida;
 
-    @Column
-    private Cancha cancha ;
+
     @Column
     private  boolean disponible;
-    @Column
-    private List<Disponibilidad> disponibilidad;
+
 
 
 
@@ -36,21 +40,17 @@ public class Disponibilidad {
         this.disponible = disponible;
     }
 
-    public List<Disponibilidad> getDisponibilidad() {
-        return disponibilidad;
+
+
+
+
+
+
+
+    public Alquiler() {
     }
 
-    public void setDisponibilidad(List<Disponibilidad> disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
-
-
-
-    public Disponibilidad() {
-    }
-
-    public Disponibilidad(int dia, int horarioEntrada, int horarioSalida, Cancha cancha, boolean disponible) {
+    public Alquiler(int dia, int horarioEntrada, int horarioSalida, Cancha cancha, boolean disponible) {
         this.dia = dia;
         this.horarioEntrada = horarioEntrada;
         this.horarioSalida = horarioSalida;
@@ -105,15 +105,7 @@ public class Disponibilidad {
 //
 //    }
 
-    public  List filtraPorDiaHorarioFechaYCancha(int dia , int horarioEntrada, int horarioSalida,int idCancha){
 
-        List FiltroXDiaXNocheXCancha = getDisponibilidad().stream()
-                .filter(disponibilidad1 -> disponibilidad1.getCancha().equals(idCancha))
-                .filter(disponibilidad1 -> disponibilidad1.getHorarioEntrada()==(horarioEntrada))
-                .filter(disponibilidad1 -> disponibilidad1.getHorarioSalida()==(horarioSalida)).collect(Collectors.toList());
-
-                return FiltroXDiaXNocheXCancha;
-    }
 
 
 

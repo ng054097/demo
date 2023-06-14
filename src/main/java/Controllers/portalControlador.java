@@ -1,6 +1,7 @@
 package Controllers;
 
 
+import clases.Alquiler;
 import clases.Cancha;
 import lombok.AllArgsConstructor;
 
@@ -18,10 +19,12 @@ public class portalControlador {
     private final CanchaServicio canchaServicio;
 
     @PostMapping
-    public Cancha saveCancha(@RequestBody Cancha cancha){
-        return canchaServicio.GuardarCancha(cancha);
+    public Alquiler saveCancha(@RequestBody Alquiler alquiler){
+        return canchaServicio.GuardarCancha(alquiler);
 
     }
+
+
 
 
 }
